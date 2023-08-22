@@ -24,8 +24,10 @@ namespace LinkedLists
         public void AddTail(T item)
         {
             SinglyLinkedListNode<T> nodeToAdd = new SinglyLinkedListNode<T>(item);
-            nodeToAdd.Next= _tail;
+            //var currentTail = _tail;
+            _tail.Next = nodeToAdd;
             _tail = nodeToAdd;
+
         }
 
         public override string? ToString()
