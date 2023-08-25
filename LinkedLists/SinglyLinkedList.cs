@@ -10,6 +10,10 @@ namespace LinkedLists
         private SinglyLinkedListNode<T> _head { get; set; }
         // Last Node
         private SinglyLinkedListNode<T> _tail { get; set; }
+        /// <summary>
+        /// This will be every Node in my Linked List, the only thing it knows is its value and the next node.
+        /// </summary>
+        /// <typeparam name="T">The type of value stored in the node.</typeparam>
         public void AddHead(T item)
         {
             SinglyLinkedListNode<T> nodeToAdd = new SinglyLinkedListNode<T>(item);
@@ -30,9 +34,33 @@ namespace LinkedLists
 
         }
 
+        public SinglyLinkedListNode<T>? Find(T value)
+        {
+            SinglyLinkedListNode<T> current = _head;
+
+            while (current != null)
+            {
+                if ( current.Value.Equals(value))
+                {
+                    return current;
+                }
+                else
+                {
+                    current = current.Next;
+                }
+
+            }
+            return null;
+        }
+
+        public bool Contains(T value)
+        {
+            return Find(value) != null ; 
+        }
+
         public override string? ToString()
         {
-            var sb =  new StringBuilder();
+            var sb = new StringBuilder();
             var currentNode = _head;
 
             while (currentNode != null)
@@ -47,11 +75,6 @@ namespace LinkedLists
             return sb.ToString();
         }
     }
-
-    /// <summary>
-    /// This will be every Node in my Linked List, the only thing it knows is its value and the next node.
-    /// </summary>
-    /// <typeparam name="T">The type of value stored in the node.</typeparam>
     public class SinglyLinkedListNode<T>
     {
         public T Value { get; set; }
@@ -61,5 +84,11 @@ namespace LinkedLists
             Value = value;
             Next = nextNode;
         }
+
+        public override string? ToString()
+        {
+            return Value.ToString();
+        }
     }
+
 }

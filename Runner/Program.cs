@@ -29,8 +29,15 @@ namespace Runner
             test.AddTail("node #-1");
             test.AddTail("node #-2");
 
-            Console.WriteLine(  
+            Console.WriteLine(
             test.ToString()
+                                );
+            Console.WriteLine(  
+            test.Contains("node #7")
+                );
+
+            Console.WriteLine(
+            test.Contains("node #27")
                 
                 );
 
