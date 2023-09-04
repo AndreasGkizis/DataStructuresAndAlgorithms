@@ -1,28 +1,27 @@
 ﻿using System.Collections;
 using System.Text;
 
-namespace LinkedLists
+namespace LinkedLists.SinglyLinkedLists
 {
     /// <summary>
     /// A singly linked list with only the bare essentials
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class ExtraSinglyLinkedList<T> : IEnumerable
+    public class PureSinglyLinkedList<T> : IEnumerable
     {
         public T Head { get { return _head.Value; } }
         public T Tail { get { return _tail.Value; } }
-        public int Count { get; private set; }
-        private ExtraSinglyLinkedListNode<T> _head { get; set; }
-        private ExtraSinglyLinkedListNode<T> _tail { get; set; }
+        private SinglyLinkedListNode<T> _head { get; set; }
+        private SinglyLinkedListNode<T> _tail { get; set; }
         /// <summary>
         /// This will be every Node in my Linked List, the only thing it knows is its value and the next node.
         /// </summary>
         /// <typeparam name="T">The type of value stored in the node.</typeparam>
         public void AddHead(T value)
         {
-            AddHead(new ExtraSinglyLinkedListNode<T>(value));
+            AddHead(new SinglyLinkedListNode<T>(value));
         }
-        public void AddHead(ExtraSinglyLinkedListNode<T> node)
+        public void AddHead(SinglyLinkedListNode<T> node)
         {
             node.Next = _head;
             _head = node;
@@ -30,23 +29,20 @@ namespace LinkedLists
             {
                 _tail = node;
             }
-            Count++;
-
         }
         public void AddTail(T value)
         {
-            AddTail(new ExtraSinglyLinkedListNode<T>(value));
+            AddTail(new SinglyLinkedListNode<T>(value));
         }
-        public void AddTail(ExtraSinglyLinkedListNode<T> node)
+        public void AddTail(SinglyLinkedListNode<T> node)
         {
             _tail.Next = node;
             _tail = node;
-            Count++;
 
         }
-        public ExtraSinglyLinkedListNode<T>? Find(T value)
+        public SinglyLinkedListNode<T>? Find(T value)
         {
-            ExtraSinglyLinkedListNode<T> current = _head;
+            SinglyLinkedListNode<T> current = _head;
 
             while (current != null)
             {
@@ -70,7 +66,6 @@ namespace LinkedLists
             if (_head != null)
             {
                 _head = _head.Next;
-                Count--;
                 return true;
             }
             return false;
@@ -86,7 +81,6 @@ namespace LinkedLists
                 }
                 current.Next = null;
                 _tail = current;
-                Count--;
                 return true;
             }
             return false;
@@ -102,8 +96,8 @@ namespace LinkedLists
             {
                 return RemoveTail();
             }
-            ExtraSinglyLinkedListNode<T> previous = null;
-            ExtraSinglyLinkedListNode<T> current = _head;
+            SinglyLinkedListNode<T> previous = null;
+            SinglyLinkedListNode<T> current = _head;
             while (current != null)
             {
                 if (current.Value.Equals(value))
@@ -114,8 +108,11 @@ namespace LinkedLists
                         if (current.Next == null)
                         {
                             _tail = previous;
-                            Count--;
                         }
+                    }
+                    else
+                    {
+                        RemoveHead();
                     }
                     return true;
                 }
@@ -123,13 +120,6 @@ namespace LinkedLists
                 current = current.Next;
             }
             return false;
-        }
-
-        public void Clear()
-        {
-            _head = null;
-            _tail = null;
-            Count = 0;
         }
         public override string? ToString()
         {
@@ -149,27 +139,12 @@ namespace LinkedLists
         }
         public IEnumerator GetEnumerator()
         {
-            ExtraSinglyLinkedListNode<T> current = _head;
+            SinglyLinkedListNode<T> current = _head;
             while (current != null)
             {
                 yield return current.Value;
                 current = current.Next;
             }
-        }
-    }
-    public class ExtraSinglyLinkedListNode<T>
-    {
-        public T Value { get; set; }
-        public ExtraSinglyLinkedListNode<T>? Next { get; set; }
-        public ExtraSinglyLinkedListNode(T value, ExtraSinglyLinkedListNode<T> nextNode = null)
-        {
-            Value = value;
-            Next = nextNode;
-        }
-
-        public override string? ToString()
-        {
-            return Value.ToString();
         }
     }
 
