@@ -1,32 +1,62 @@
 ﻿using LinkedLists.DoublyLinkedLists;
 using System.Collections;
+using System.Security;
 using System.Text;
 
 namespace LinkedLists.SortedList
 {
     public class SortedList<T> : IEnumerable
+        where T : IComparable<T>
     {
         public int Count { get; set; }
         public T? Head { get { return _head.Value; } }
         public T? Tail { get { return _tail.Value; } }
-        private DoublyLinkedListNode<T>? _head { get; set; }
-        private DoublyLinkedListNode<T>? _tail { get; set; }
+        private SortedLinkedListNode<T>? _head { get; set; }
+        private SortedLinkedListNode<T>? _tail { get; set; }
 
         public void Add(T value)
         {
-            if (this.Count == 0)
+            Add(new SortedLinkedListNode<T>(value));
+        }
+
+        public void Add(SortedLinkedListNode<T> node)
+        {
+            // if it is empty of if the value is smaller than the head, add it as a head
+            if (_head == null || _head.Value.CompareTo(node.Value) >= 0)
             {
-                AddHead(value);
+                AddHead(node);
+            }
+            // if it is larger than the tail add it as a tail
+            else if (_tail.Value.CompareTo(node.Value) < 0)
+            {
+                AddTail(node);
+            }
+            else
+            {
+                var insertBefore = _head;
+                // find where to insert new node
+                while (insertBefore.Value.CompareTo(node.Value) < 0)
+                {
+                    insertBefore = insertBefore.Next;
+                }
+
+                // insert new node in chain 
+                node.Next = insertBefore;
+                node.Previous = insertBefore.Previous;
+                insertBefore.Previous.Next = node;
+                insertBefore.Previous = node;
+                Count++;
             }
         }
 
+
         private void AddHead(T value)
         {
-            AddHead(new DoublyLinkedListNode<T>(value));
+            AddHead(new SortedLinkedListNode<T>(value));
         }
-        private void AddHead(DoublyLinkedListNode<T> node)
+        private void AddHead(SortedLinkedListNode<T> node)
         {
-            DoublyLinkedListNode<T> temp = _head;
+            SortedLinkedListNode<T> temp = _head;
             _head = node;
 
             _head.Next = temp;
@@ -44,9 +74,9 @@ namespace LinkedLists.SortedList
 
         private void AddTail(T value)
         {
-            AddTail(new DoublyLinkedListNode<T>(value));
+            AddTail(new SortedLinkedListNode<T>(value));
         }
-        private void AddTail(DoublyLinkedListNode<T> node)
+        private void AddTail(SortedLinkedListNode<T> node)
         {
             if (Count == 0)
             {
@@ -62,7 +92,7 @@ namespace LinkedLists.SortedList
         }
 
 
-        public DoublyLinkedListNode<T>? Find(T value)
+        public SortedLinkedListNode<T>? Find(T value)
         {
             var current = _head;
             while (current != null)

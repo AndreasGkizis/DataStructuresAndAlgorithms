@@ -50,34 +50,51 @@ namespace Runner
             #endregion
 
             #region doubly linked lists
-            var node1 = new DoublyLinkedListNode<string>("node 1");
-            var node2 = new DoublyLinkedListNode<string>("node 2");
-            var node3 = new DoublyLinkedListNode<string>("node 3");
-            var node4 = new DoublyLinkedListNode<string>("node 4");
+            //var node1 = new DoublyLinkedListNode<string>("node 1");
+            //var node2 = new DoublyLinkedListNode<string>("node 2");
+            //var node3 = new DoublyLinkedListNode<string>("node 3");
+            //var node4 = new DoublyLinkedListNode<string>("node 4");
 
-            var test = new PureDoublyLinkedList<string>();
+            //var test = new PureDoublyLinkedList<string>();
 
-            test.AddTail("node #0");
-            test.AddHead(node4);
-            test.AddHead(node3);
-            test.AddHead(node2);
-            test.AddHead(node1);
-            test.AddHead("node #5");
-            test.AddHead("node #6");
-            test.AddHead("node #7");
+            //test.AddTail("node #0");
+            //test.AddHead(node4);
+            //test.AddHead(node3);
+            //test.AddHead(node2);
+            //test.AddHead(node1);
+            //test.AddHead("node #5");
+            //test.AddHead("node #6");
+            //test.AddHead("node #7");
 
 
-            test.AddTail("node #-1");
-            test.AddTail("node #-2");
-            test.RemoveHead();
-            test.RemoveTail();
+            //test.AddTail("node #-1");
+            //test.AddTail("node #-2");
+            //test.RemoveHead();
+            //test.RemoveTail();
 
-            test.RemoveNode("node 4");
-            test.ToString();
+            //test.RemoveNode("node 4");
+            //test.ToString();
 
-            var test1 =  new SortedList<string>();
             #endregion
 
+            #region SortedLists
+
+            var node1 = new SortedLinkedListNode<int>(1);
+            var node2 = new SortedLinkedListNode<int>(2);
+            var node3 = new SortedLinkedListNode<int>(3);
+            var node4 = new SortedLinkedListNode<int>(4);
+            var node5 = new SortedLinkedListNode<int>(5);
+
+            var test = new SortedList<int>();
+
+            test.Add(node1);
+            test.Add(node5);
+            test.Add(node3);
+
+
+            test.ToString();
+            #endregion
+            //var test1 =  new SortedList<string>();
             //Console.WriteLine("end");
         }
     }
