@@ -1,5 +1,9 @@
 ﻿namespace LinkedLists.SinglyLinkedLists
 {
+    /// <summary>
+    /// This will be every Node in my Linked List, the only thing it knows is its value and the next node.
+    /// </summary>
+    /// <typeparam name="T">The type of value stored in the node.</typeparam>
     public class SinglyLinkedListNode<T>
     {
         public T Value { get; set; }

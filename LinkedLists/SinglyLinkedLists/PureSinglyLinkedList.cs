@@ -9,14 +9,16 @@ namespace LinkedLists.SinglyLinkedLists
     /// <typeparam name="T"></typeparam>
     public class PureSinglyLinkedList<T> : IEnumerable
     {
+        public PureSinglyLinkedList()
+        {
+            _head = null;
+            _tail = null;
+        }
         public T Head { get { return _head.Value; } }
         public T Tail { get { return _tail.Value; } }
         private SinglyLinkedListNode<T> _head { get; set; }
         private SinglyLinkedListNode<T> _tail { get; set; }
-        /// <summary>
-        /// This will be every Node in my Linked List, the only thing it knows is its value and the next node.
-        /// </summary>
-        /// <typeparam name="T">The type of value stored in the node.</typeparam>
+       
         public void AddHead(T value)
         {
             AddHead(new SinglyLinkedListNode<T>(value));
@@ -147,5 +149,4 @@ namespace LinkedLists.SinglyLinkedLists
             }
         }
     }
-
 }
