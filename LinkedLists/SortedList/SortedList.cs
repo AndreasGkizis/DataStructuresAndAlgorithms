@@ -1,9 +1,9 @@
-﻿using LinkedLists.DoublyLinkedLists;
+﻿using DataStructures.DoublyLinkedLists;
 using System.Collections;
 using System.Security;
 using System.Text;
 
-namespace LinkedLists.SortedList
+namespace DataStructures.SortedList
 {
     public class SortedList<T> : IEnumerable
         where T : IComparable<T>

@@ -1,4 +1,4 @@
-using LinkedLists.SinglyLinkedLists;
+using DataStructures.SinglyLinkedLists;
 using Newtonsoft.Json.Linq;
 
 namespace DataStructures.Tests.LinkedLists

@@ -1,7 +1,7 @@
 ﻿using System.Collections;
 using System.Text;
 
-namespace LinkedLists.SinglyLinkedLists
+namespace DataStructures.SinglyLinkedLists
 {
     /// <summary>
     /// A singly linked list with only the bare essentials

@@ -1,11 +1,11 @@
-﻿using LinkedLists.SinglyLinkedLists;
+﻿using DataStructures.SinglyLinkedLists;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LinkedLists.DoublyLinkedLists
+namespace DataStructures.DoublyLinkedLists
 {
     public class SortedLinkedListNode<T> where T: IComparable<T>
     {

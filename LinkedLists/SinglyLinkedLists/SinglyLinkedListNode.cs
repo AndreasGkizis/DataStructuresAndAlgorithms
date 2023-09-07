@@ -1,4 +1,4 @@
-﻿namespace LinkedLists.SinglyLinkedLists
+﻿namespace DataStructures.SinglyLinkedLists
 {
     /// <summary>
     /// This will be every Node in my Linked List, the only thing it knows is its value and the next node.

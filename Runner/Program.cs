@@ -1,6 +1,6 @@
-﻿using LinkedLists.DoublyLinkedLists;
-using LinkedLists.SinglyLinkedLists;
-using LinkedLists.SortedList;
+﻿using DataStructures.DoublyLinkedLists;
+using DataStructures.SinglyLinkedLists;
+using DataStructures.SortedList;
 
 namespace Runner
 {
