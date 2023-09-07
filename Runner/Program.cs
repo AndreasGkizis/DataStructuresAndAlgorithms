@@ -1,4 +1,5 @@
-﻿using DataStructures.DoublyLinkedLists;
+﻿using DataStructures.Deque;
+using DataStructures.DoublyLinkedList;
 using DataStructures.SinglyLinkedLists;
 using DataStructures.SortedList;
 
@@ -79,20 +80,49 @@ namespace Runner
 
             #region SortedLists
 
-            var node1 = new SortedLinkedListNode<int>(1);
-            var node2 = new SortedLinkedListNode<int>(2);
-            var node3 = new SortedLinkedListNode<int>(3);
-            var node4 = new SortedLinkedListNode<int>(4);
-            var node5 = new SortedLinkedListNode<int>(5);
+            // var node1 = new DoublyLinkedListNode<int>(1);
+            // var node2 = new DoublyLinkedListNode<int>(2);
+            // var node3 = new DoublyLinkedListNode<int>(3);
+            // var node4 = new DoublyLinkedListNode<int>(4);
+            // var node5 = new DoublyLinkedListNode<int>(5);
 
-            var test = new SortedList<int>();
+            // var test = new SortedList<int>();
 
-            test.Add(node1);
-            test.Add(node5);
-            test.Add(node3);
+            // test.Add(node1);
+            // test.Add(node5);
+            // test.Add(node3);
 
 
-            test.ToString();
+            // test.ToString();
+            #endregion
+
+            #region Deque
+
+            var node1 = new DoublyLinkedListNode<int>(1);
+            var node2 = new DoublyLinkedListNode<int>(2);
+            var node3 = new DoublyLinkedListNode<int>(3);
+            var node4 = new DoublyLinkedListNode<int>(4);
+            var node5 = new DoublyLinkedListNode<int>(5);
+
+            var test = new Deque<int>();
+
+            test.EnqueueHead(node1);
+            test.EnqueueHead(5);
+            test.EnqueueHead(5);
+            test.EnqueueHead(5);
+            test.EnqueueHead(5);
+            test.EnqueueHead(5);
+            test.EnqueueHead(5);
+            test.EnqueueHead(5);
+            var result= test.PeekHead();
+            System.Console.WriteLine(test.DequeueTail());
+            System.Console.WriteLine(test.DequeueTail());
+
+            foreach (var item in test)
+            {
+                System.Console.WriteLine(item);
+            }
+     
             #endregion
             //var test1 =  new SortedList<string>();
             //Console.WriteLine("end");

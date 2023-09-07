@@ -1,7 +1,8 @@
-﻿using DataStructures.DoublyLinkedLists;
-using System.Collections;
+﻿using System.Collections;
 using System.Security;
 using System.Text;
+
+using DataStructures.DoublyLinkedList;
 
 namespace DataStructures.SortedList
 {
@@ -11,15 +12,15 @@ namespace DataStructures.SortedList
         public int Count { get; set; }
         public T? Head { get { return _head.Value; } }
         public T? Tail { get { return _tail.Value; } }
-        private SortedLinkedListNode<T>? _head { get; set; }
-        private SortedLinkedListNode<T>? _tail { get; set; }
+        private DoublyLinkedListNode<T>? _head { get; set; }
+        private DoublyLinkedListNode<T>? _tail { get; set; }
 
         public void Add(T value)
         {
-            Add(new SortedLinkedListNode<T>(value));
+            Add(new DoublyLinkedListNode<T>(value));
         }
 
-        public void Add(SortedLinkedListNode<T> node)
+        public void Add(DoublyLinkedListNode<T> node)
         {
             // if it is empty of if the value is smaller than the head, add it as a head
             if (_head == null || _head.Value.CompareTo(node.Value) >= 0)
@@ -52,11 +53,11 @@ namespace DataStructures.SortedList
 
         private void AddHead(T value)
         {
-            AddHead(new SortedLinkedListNode<T>(value));
+            AddHead(new DoublyLinkedListNode<T>(value));
         }
-        private void AddHead(SortedLinkedListNode<T> node)
+        private void AddHead(DoublyLinkedListNode<T> node)
         {
-            SortedLinkedListNode<T> temp = _head;
+            DoublyLinkedListNode<T> temp = _head;
             _head = node;
 
             _head.Next = temp;
@@ -74,9 +75,9 @@ namespace DataStructures.SortedList
 
         private void AddTail(T value)
         {
-            AddTail(new SortedLinkedListNode<T>(value));
+            AddTail(new DoublyLinkedListNode<T>(value));
         }
-        private void AddTail(SortedLinkedListNode<T> node)
+        private void AddTail(DoublyLinkedListNode<T> node)
         {
             if (Count == 0)
             {
@@ -92,7 +93,7 @@ namespace DataStructures.SortedList
         }
 
 
-        public SortedLinkedListNode<T>? Find(T value)
+        public DoublyLinkedListNode<T>? Find(T value)
         {
             var current = _head;
             while (current != null)

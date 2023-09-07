@@ -1,14 +1,13 @@
-﻿using DataStructures.SinglyLinkedLists;
-using System;
+﻿using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DataStructures.DoublyLinkedLists
+namespace DataStructures.DoublyLinkedList
 {
-    public class PureDoublyLinkedList<T> : IEnumerable
+    public class PureDoublyLinkedList<T> : IEnumerable<T>
     {
         public int Count { get; set; }
         public T? Head { get { return _head.Value; } }
@@ -97,7 +96,7 @@ namespace DataStructures.DoublyLinkedLists
 
         public bool RemoveTail()
         {
-            if(_tail != null)
+            if (_tail != null)
             {
                 _tail = _tail.Previous;
                 _tail.Next = null;
@@ -113,7 +112,8 @@ namespace DataStructures.DoublyLinkedLists
                 RemoveHead();
                 Count--;
                 return true;
-            }else if (_tail.Value.Equals(value))
+            }
+            else if (_tail.Value.Equals(value))
             {
                 RemoveTail();
                 Count--;
@@ -126,7 +126,7 @@ namespace DataStructures.DoublyLinkedLists
                 {
                     var previous = nodeToRemove.Previous;
                     previous.Next = nodeToRemove.Next;
-                    
+
                     var next = nodeToRemove.Next;
                     next.Previous = nodeToRemove.Previous;
                     Count--;
@@ -153,18 +153,23 @@ namespace DataStructures.DoublyLinkedLists
             return sb.ToString();
         }
 
-        public IEnumerator GetEnumerator()
+        public IEnumerator<T> GetEnumerator()
         {
-            var current =  _head;
+            var current = _head;
             while (current != null)
             {
                 yield return current.Value;
                 current = current.Next;
             }
-        }   
-        public IEnumerator GetReverseEnumerator()
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            var current =  _tail;
+            return GetEnumerator();
+        }
+        public IEnumerator<T> GetReverseEnumerator()
+        {
+            var current = _tail;
             while (current != null)
             {
                 yield return current.Value;
