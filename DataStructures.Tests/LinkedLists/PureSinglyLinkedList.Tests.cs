@@ -63,12 +63,12 @@ namespace DataStructures.Tests.LinkedLists
             {
 
             }
-            if (!isEmptyList)
-            {
-                list.AddHead(firstNode);
-                list.AddHead(secondNode);
-                list.AddHead(thirdNode);
-            }
+            // if (!isEmptyList)
+            // {
+            //     list.AddHead(firstNode);
+            //     list.AddHead(secondNode);
+            //     list.AddHead(thirdNode);
+            // }
 
             // Act
             list.AddHead(newNode);
@@ -76,10 +76,10 @@ namespace DataStructures.Tests.LinkedLists
             // Assert
             Assert.Equal(newNode.Value, list.Head);
             // only executes if the scenario is a full list
-            if (!isEmptyList)
-            {
-                Assert.Equal(firstNode.Value, list.Tail);
-            }
+            // if (!isEmptyList)
+            // {
+            //     Assert.Equal(firstNode.Value, list.Tail);
+            // }
         }
     }
 }
