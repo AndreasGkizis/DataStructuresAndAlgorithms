@@ -1,4 +1,5 @@
-﻿using DataStructures.Deque;
+﻿using DataStructures.BinaryTree;
+using DataStructures.Deque;
 using DataStructures.DoublyLinkedList;
 using DataStructures.SinglyLinkedLists;
 using DataStructures.SortedList;
@@ -114,7 +115,7 @@ namespace Runner
             test.EnqueueHead(5);
             test.EnqueueHead(5);
             test.EnqueueHead(5);
-            var result= test.PeekHead();
+            var result = test.PeekHead();
             System.Console.WriteLine(test.DequeueTail());
             System.Console.WriteLine(test.DequeueTail());
 
@@ -122,7 +123,33 @@ namespace Runner
             {
                 System.Console.WriteLine(item);
             }
-     
+
+            #endregion
+
+            #region Binary Trees
+
+            BinaryTreeNode<string> nodeG = new("G");
+            BinaryTreeNode<string> nodeD = new("D");
+            BinaryTreeNode<string> nodeH = new("H");
+            BinaryTreeNode<string> nodeB = new("B");
+            BinaryTreeNode<string> nodeC = new("C");
+            BinaryTreeNode<string> nodeZ = new("Z");
+            BinaryTreeNode<string> nodeY = new("Y");
+
+            var testtree = new BinaryTree<string>();
+            testtree.Add(nodeG);
+            testtree.Add(nodeD);
+
+            testtree.Add(nodeZ);
+            testtree.Add(nodeY);
+
+            testtree.Contains(nodeB);
+            
+
+
+            System.Console.WriteLine("Inside the () is a bigger int  | ==> result : {0}", 1.CompareTo(2));
+            System.Console.WriteLine("Inside the () is the same int  | ==> result : {0}", 1.CompareTo(1));
+            System.Console.WriteLine("Inside the () is a smaller int | ==> result : {0}", 2.CompareTo(1));
             #endregion
             //var test1 =  new SortedList<string>();
             //Console.WriteLine("end");

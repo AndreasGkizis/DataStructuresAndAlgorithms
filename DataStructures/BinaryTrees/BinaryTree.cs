@@ -59,6 +59,17 @@ public class BinaryTree<T> where T : IComparable<T>
         return FindWithParent(nodeToFind).parentNode != null;
     }
 
+
+    /// <summary>
+    /// Finds a node in the binary tree along with its parent node.
+    /// </summary>
+    /// <param name="nodeToFind">The node to find in the tree.</param>
+    /// <returns>
+    /// A tuple with two elements:
+    ///   - The found node (<see cref="BinaryTreeNode{T}"/>).
+    ///   - The parent node (<see cref="BinaryTreeNode{T}"/>).
+    /// If the node is not found, both values will be null.
+    /// </returns>
     private (BinaryTreeNode<T>? foundNode, BinaryTreeNode<T>? parentNode) FindWithParent(BinaryTreeNode<T> nodeToFind)
     {
         var current = Root;
@@ -89,4 +100,59 @@ public class BinaryTree<T> where T : IComparable<T>
 
     #endregion
 
+    #region Remove
+    public bool RemoveNode(T value)
+    {
+        return RemoveNode(new BinaryTreeNode<T>(value));
+    }
+
+    public bool RemoveNode(BinaryTreeNode<T> noteToRemove)
+    {
+        // BinaryTreeNode<T>? current;
+        // BinaryTreeNode<T>? parent;
+
+        var (current, parent) = FindWithParent(noteToRemove);
+        // if not found return false indicating it was not removed
+        if (current == null) return false;
+
+        Count--;
+
+        // Case 1: current has no children at all. 
+        // set the parents reference of current to null
+        if (current.Left == null && current.Right == null)
+        {
+            if (parent.Right == current)
+            {
+                parent.Right = null;
+            }
+            else
+            {
+                parent.Left = null;
+            }
+            return true;
+        }
+
+        // Case 2: current has 1 child 
+
+        // step 1 : get the child 
+        var currentChild = current.Left == null ? current.Right : current.Left;
+        // step 2 find if current is left or right child and replace with it's child 
+        int result = parent.Data.CompareTo(current.Data);
+        if (result > 0) // current was on the left
+        {
+            parent.Left = currentChild;
+            return true;
+        }
+        else // current was on the right
+        {
+            parent.Right = currentChild;
+            return true;
+        }
+
+        // Case 3:  current has 2 children
+        
+
+    }
+
+    #endregion
 }
