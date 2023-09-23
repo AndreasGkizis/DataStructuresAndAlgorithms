@@ -149,8 +149,15 @@ public class BinaryTree<T> where T : IComparable<T>
             return true;
         }
 
-        // Case 3:  current has 2 children
+        // Case 3: current has 2 children
+
+        // step 1 : find minimun in the right side of the subtree
+
+        // step 2 : replace node to be deleted with minimum value found 
+        // here we are using case 2
+
         
+
 
     }
 
