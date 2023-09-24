@@ -151,18 +151,10 @@ namespace Runner
             testtree.Add(nodeJ);
             testtree.Add(nodeX);
 
-
-
-            testtree.RemoveNode(nodeK);
-
-
-
-            System.Console.WriteLine("Inside the () is a bigger int  | ==> result : {0}", 1.CompareTo(2));
-            System.Console.WriteLine("Inside the () is the same int  | ==> result : {0}", 1.CompareTo(1));
-            System.Console.WriteLine("Inside the () is a smaller int | ==> result : {0}", 2.CompareTo(1));
+            // System.Console.WriteLine("Inside the () is a bigger int  | ==> result : {0}", 1.CompareTo(2));
+            // System.Console.WriteLine("Inside the () is the same int  | ==> result : {0}", 1.CompareTo(1));
+            // System.Console.WriteLine("Inside the () is a smaller int | ==> result : {0}", 2.CompareTo(1));
             #endregion
-            //var test1 =  new SortedList<string>();
-            //Console.WriteLine("end");
         }
     }
 }

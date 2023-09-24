@@ -1,6 +1,9 @@
+using System.Collections;
+
 namespace DataStructures.BinaryTree;
 
-public class BinaryTree<T> where T : IComparable<T>
+public class BinaryTree<T> 
+where T : IComparable<T>
 {
     private BinaryTreeNode<T> Root { get; set; }
     public int Count { get; private set; }
@@ -101,6 +104,8 @@ public class BinaryTree<T> where T : IComparable<T>
     #endregion
 
     #region Remove
+
+
     public bool RemoveNode(T value)
     {
         return RemoveNode(new BinaryTreeNode<T>(value));
@@ -108,17 +113,14 @@ public class BinaryTree<T> where T : IComparable<T>
 
     public bool RemoveNode(BinaryTreeNode<T> noteToRemove)
     {
-        // BinaryTreeNode<T>? current;
-        // BinaryTreeNode<T>? parent;
-
         var (current, parent) = FindWithParent(noteToRemove);
         // if not found return false indicating it was not removed
-        if (current == null) {
+        if (current == null)
+        {
             return false;
         }
 
         Count--;
-
         // Case 1: current has no children at all. 
         // set the parents reference of current to null
         if (current.Left == null && current.Right == null)
@@ -160,7 +162,7 @@ public class BinaryTree<T> where T : IComparable<T>
                 leftmostOfRightSubtreeParent = leftmostOfRightSubtree;
                 leftmostOfRightSubtree = leftmostOfRightSubtree.Left;
             }
-            // move the leftmosts value to the current ( to be deleted node)
+            // move the leftmosts value to the current (to be deleted node)
             current.Data = leftmostOfRightSubtree.Data;
             // we need to see what to do with the leftmosts node connections 
             // it can only have the following 
@@ -179,20 +181,15 @@ public class BinaryTree<T> where T : IComparable<T>
                 return true;
             }
         }
-
-        // step 2 : replace node to be deleted with minimum value found 
-        // here we are using case 2
-    return false;
-
-
-
+        return false;
     }
 
     private bool RemoveNodeWithOneChild(BinaryTreeNode<T> current, BinaryTreeNode<T>? parent)
     {
         BinaryTreeNode<T> currentChild = current.Left == null ? current.Right : current.Left;
         // step 2 find if current is left or right child and replace with it's child 
-        if (parent==null) {
+        if (parent == null)
+        {
             Root = currentChild;
             return true;
         }
@@ -208,7 +205,58 @@ public class BinaryTree<T> where T : IComparable<T>
             return true;
         }
     }
-    
-    
+
+
+    #endregion
+
+    #region Traversals
+    // there are three types
+    // pre/in/post order traversal
+
+    public void PreOrderTraversal(Action<T> action)
+    {
+        PreOrderTraversal(action, Root);
+    }
+
+    private void PreOrderTraversal(Action<T> action, BinaryTreeNode<T> node)
+    {
+        if (node != null)
+        {
+            action(node.Data);
+            PreOrderTraversal(action, node.Left);
+            PreOrderTraversal(action, node.Right);
+        }
+
+    }
+    public void InOrderTraversal(Action<T> action)
+    {
+        InOrderTraversal(action, Root);
+    }
+
+    private void InOrderTraversal(Action<T> action, BinaryTreeNode<T> node)
+    {
+        if (node != null)
+        {
+            InOrderTraversal(action, node.Left);
+            action(node.Data);
+            InOrderTraversal(action, node.Right);
+        }
+
+    }
+    public void PostOrderTraversal(Action<T> action)
+    {
+        PostOrderTraversal(action, Root);
+    }
+
+    private void PostOrderTraversal(Action<T> action, BinaryTreeNode<T> node)
+    {
+        if (node != null)
+        {
+            PostOrderTraversal(action, node.Left);
+            PostOrderTraversal(action, node.Right);
+            action(node.Data);
+        }
+
+    }
     #endregion
 }
