@@ -113,7 +113,9 @@ public class BinaryTree<T> where T : IComparable<T>
 
         var (current, parent) = FindWithParent(noteToRemove);
         // if not found return false indicating it was not removed
-        if (current == null) return false;
+        if (current == null) {
+            return false;
+        }
 
         Count--;
 
@@ -133,10 +135,67 @@ public class BinaryTree<T> where T : IComparable<T>
         }
 
         // Case 2: current has 1 child 
+        //has a left child only
+        if (current.Left != null && current.Right == null)
+        {
+            return RemoveNodeWithOneChild(current, parent);
+        }
+        // has a right child only 
+        else if (current.Left == null && current.Right != null)
+        {
+            return RemoveNodeWithOneChild(current, parent);
+        }
 
-        // step 1 : get the child 
-        var currentChild = current.Left == null ? current.Right : current.Left;
+        // Case 3: current has 2 children
+        // I choose to go with the MINIMUM IN RIGHT SUB TREE
+        if (current.Left != null && current.Right != null)
+        {
+            // step 1 : find minimum in the right side of the subtree
+            BinaryTreeNode<T> leftmostOfRightSubtree = current.Left;
+            BinaryTreeNode<T> leftmostOfRightSubtreeParent = current;
+
+            while (leftmostOfRightSubtree.Left != null)
+            {
+                // when there is no more left nodes this is the Smallest node 
+                leftmostOfRightSubtreeParent = leftmostOfRightSubtree;
+                leftmostOfRightSubtree = leftmostOfRightSubtree.Left;
+            }
+            // move the leftmosts value to the current ( to be deleted node)
+            current.Data = leftmostOfRightSubtree.Data;
+            // we need to see what to do with the leftmosts node connections 
+            // it can only have the following 
+            // a. a right child 
+            // b. no children 
+            if (leftmostOfRightSubtree.Right != null)
+            {
+                // has a right child 
+                current.Right = leftmostOfRightSubtree.Right;
+                return true;
+            }
+            else
+            {
+                // b. no children
+                leftmostOfRightSubtreeParent.Left = null;
+                return true;
+            }
+        }
+
+        // step 2 : replace node to be deleted with minimum value found 
+        // here we are using case 2
+    return false;
+
+
+
+    }
+
+    private bool RemoveNodeWithOneChild(BinaryTreeNode<T> current, BinaryTreeNode<T>? parent)
+    {
+        BinaryTreeNode<T> currentChild = current.Left == null ? current.Right : current.Left;
         // step 2 find if current is left or right child and replace with it's child 
+        if (parent==null) {
+            Root = currentChild;
+            return true;
+        }
         int result = parent.Data.CompareTo(current.Data);
         if (result > 0) // current was on the left
         {
@@ -148,18 +207,8 @@ public class BinaryTree<T> where T : IComparable<T>
             parent.Right = currentChild;
             return true;
         }
-
-        // Case 3: current has 2 children
-
-        // step 1 : find minimun in the right side of the subtree
-
-        // step 2 : replace node to be deleted with minimum value found 
-        // here we are using case 2
-
-        
-
-
     }
-
+    
+    
     #endregion
 }
