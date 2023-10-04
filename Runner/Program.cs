@@ -135,24 +135,26 @@ namespace Runner
             BinaryTreeNode<string> nodeC = new("C");
             BinaryTreeNode<string> nodeZ = new("Z");
             BinaryTreeNode<string> nodeY = new("Y");
+            BinaryTreeNode<string> nodeK = new("K");
+            BinaryTreeNode<string> nodeJ = new("J");
+            BinaryTreeNode<string> nodeX = new("X");
 
             var testtree = new BinaryTree<string>();
             testtree.Add(nodeG);
             testtree.Add(nodeD);
-
+            testtree.Add(nodeH);
+            testtree.Add(nodeB);
+            testtree.Add(nodeC);
             testtree.Add(nodeZ);
             testtree.Add(nodeY);
+            testtree.Add(nodeK);
+            testtree.Add(nodeJ);
+            testtree.Add(nodeX);
 
-            testtree.Contains(nodeB);
-            
-
-
-            System.Console.WriteLine("Inside the () is a bigger int  | ==> result : {0}", 1.CompareTo(2));
-            System.Console.WriteLine("Inside the () is the same int  | ==> result : {0}", 1.CompareTo(1));
-            System.Console.WriteLine("Inside the () is a smaller int | ==> result : {0}", 2.CompareTo(1));
+            // System.Console.WriteLine("Inside the () is a bigger int  | ==> result : {0}", 1.CompareTo(2));
+            // System.Console.WriteLine("Inside the () is the same int  | ==> result : {0}", 1.CompareTo(1));
+            // System.Console.WriteLine("Inside the () is a smaller int | ==> result : {0}", 2.CompareTo(1));
             #endregion
-            //var test1 =  new SortedList<string>();
-            //Console.WriteLine("end");
         }
     }
 }

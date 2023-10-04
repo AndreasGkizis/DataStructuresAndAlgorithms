@@ -1,6 +1,7 @@
 namespace DataStructures.BinaryTree;
 
-public class BinaryTreeNode<T>
+public class BinaryTreeNode<T>: IComparable<T>
+where T : IComparable<T>
 {
     //props
     public T Data;
@@ -12,7 +13,12 @@ public class BinaryTreeNode<T>
         Data = value;
     }
 
+    public int CompareTo(T? other)
+    {
+        return Data.CompareTo(other);
+    }
+
     // methods
 
-    
+
 }

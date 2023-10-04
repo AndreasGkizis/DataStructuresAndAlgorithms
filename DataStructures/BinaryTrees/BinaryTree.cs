@@ -1,6 +1,9 @@
+using System.Collections;
+
 namespace DataStructures.BinaryTree;
 
-public class BinaryTree<T> where T : IComparable<T>
+public class BinaryTree<T> 
+where T : IComparable<T>
 {
     private BinaryTreeNode<T> Root { get; set; }
     public int Count { get; private set; }
@@ -101,6 +104,8 @@ public class BinaryTree<T> where T : IComparable<T>
     #endregion
 
     #region Remove
+
+
     public bool RemoveNode(T value)
     {
         return RemoveNode(new BinaryTreeNode<T>(value));
@@ -108,15 +113,14 @@ public class BinaryTree<T> where T : IComparable<T>
 
     public bool RemoveNode(BinaryTreeNode<T> noteToRemove)
     {
-        // BinaryTreeNode<T>? current;
-        // BinaryTreeNode<T>? parent;
-
         var (current, parent) = FindWithParent(noteToRemove);
         // if not found return false indicating it was not removed
-        if (current == null) return false;
+        if (current == null)
+        {
+            return false;
+        }
 
         Count--;
-
         // Case 1: current has no children at all. 
         // set the parents reference of current to null
         if (current.Left == null && current.Right == null)
@@ -133,10 +137,62 @@ public class BinaryTree<T> where T : IComparable<T>
         }
 
         // Case 2: current has 1 child 
+        //has a left child only
+        if (current.Left != null && current.Right == null)
+        {
+            return RemoveNodeWithOneChild(current, parent);
+        }
+        // has a right child only 
+        else if (current.Left == null && current.Right != null)
+        {
+            return RemoveNodeWithOneChild(current, parent);
+        }
 
-        // step 1 : get the child 
-        var currentChild = current.Left == null ? current.Right : current.Left;
+        // Case 3: current has 2 children
+        // I choose to go with the MINIMUM IN RIGHT SUB TREE
+        if (current.Left != null && current.Right != null)
+        {
+            // step 1 : find minimum in the right side of the subtree
+            BinaryTreeNode<T> leftmostOfRightSubtree = current.Left;
+            BinaryTreeNode<T> leftmostOfRightSubtreeParent = current;
+
+            while (leftmostOfRightSubtree.Left != null)
+            {
+                // when there is no more left nodes this is the Smallest node 
+                leftmostOfRightSubtreeParent = leftmostOfRightSubtree;
+                leftmostOfRightSubtree = leftmostOfRightSubtree.Left;
+            }
+            // move the leftmosts value to the current (to be deleted node)
+            current.Data = leftmostOfRightSubtree.Data;
+            // we need to see what to do with the leftmosts node connections 
+            // it can only have the following 
+            // a. a right child 
+            // b. no children 
+            if (leftmostOfRightSubtree.Right != null)
+            {
+                // has a right child 
+                current.Right = leftmostOfRightSubtree.Right;
+                return true;
+            }
+            else
+            {
+                // b. no children
+                leftmostOfRightSubtreeParent.Left = null;
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private bool RemoveNodeWithOneChild(BinaryTreeNode<T> current, BinaryTreeNode<T>? parent)
+    {
+        BinaryTreeNode<T> currentChild = current.Left == null ? current.Right : current.Left;
         // step 2 find if current is left or right child and replace with it's child 
+        if (parent == null)
+        {
+            Root = currentChild;
+            return true;
+        }
         int result = parent.Data.CompareTo(current.Data);
         if (result > 0) // current was on the left
         {
@@ -148,11 +204,59 @@ public class BinaryTree<T> where T : IComparable<T>
             parent.Right = currentChild;
             return true;
         }
-
-        // Case 3:  current has 2 children
-        
-
     }
 
+
+    #endregion
+
+    #region Traversals
+    // there are three types
+    // pre/in/post order traversal
+
+    public void PreOrderTraversal(Action<T> action)
+    {
+        PreOrderTraversal(action, Root);
+    }
+
+    private void PreOrderTraversal(Action<T> action, BinaryTreeNode<T> node)
+    {
+        if (node != null)
+        {
+            action(node.Data);
+            PreOrderTraversal(action, node.Left);
+            PreOrderTraversal(action, node.Right);
+        }
+
+    }
+    public void InOrderTraversal(Action<T> action)
+    {
+        InOrderTraversal(action, Root);
+    }
+
+    private void InOrderTraversal(Action<T> action, BinaryTreeNode<T> node)
+    {
+        if (node != null)
+        {
+            InOrderTraversal(action, node.Left);
+            action(node.Data);
+            InOrderTraversal(action, node.Right);
+        }
+
+    }
+    public void PostOrderTraversal(Action<T> action)
+    {
+        PostOrderTraversal(action, Root);
+    }
+
+    private void PostOrderTraversal(Action<T> action, BinaryTreeNode<T> node)
+    {
+        if (node != null)
+        {
+            PostOrderTraversal(action, node.Left);
+            PostOrderTraversal(action, node.Right);
+            action(node.Data);
+        }
+
+    }
     #endregion
 }
