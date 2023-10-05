@@ -9,9 +9,14 @@ namespace DataStructures.HashTables
     internal class HashTableArray<TKey, TValue>
     {
         HashTableArrayNode<TKey, TValue>[] _array;
-        public (bool IsValueFound, TValue Value)  TryGetValue(TKey key)
+
+        public HashTableArray(int arrayCapacity)
         {
-            return (true, TValue );
+            _array = new HashTableArrayNode<TKey, TValue>[arrayCapacity];
+        }
+        public bool TryGetValue(TKey key, out TValue value)
+        {
+            return (true, TValue);
         }
     }
 }

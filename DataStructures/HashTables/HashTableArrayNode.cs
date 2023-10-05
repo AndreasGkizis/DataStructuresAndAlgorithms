@@ -9,7 +9,7 @@ namespace DataStructures.HashTables
 {
     public class HashTableArrayNode<TKey, TValue>
     {
-        // in each hashed table there are Nodes, the have linked lists inside
+        // in each hashed table there are Nodes, they have linked lists inside
         ExtraSinglyLinkedList<HashTableArrayNode<TKey, TValue>> _items;
     }
 }
