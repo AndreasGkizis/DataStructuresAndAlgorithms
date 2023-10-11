@@ -1,6 +1,7 @@
 ﻿using DataStructures.BinaryTree;
 using DataStructures.Deque;
 using DataStructures.DoublyLinkedList;
+using DataStructures.HashTables;
 using DataStructures.SinglyLinkedLists;
 using DataStructures.SortedList;
 
@@ -99,61 +100,71 @@ namespace Runner
 
             #region Deque
 
-            var node1 = new DoublyLinkedListNode<int>(1);
-            var node2 = new DoublyLinkedListNode<int>(2);
-            var node3 = new DoublyLinkedListNode<int>(3);
-            var node4 = new DoublyLinkedListNode<int>(4);
-            var node5 = new DoublyLinkedListNode<int>(5);
+            // var node1 = new DoublyLinkedListNode<int>(1);
+            // var node2 = new DoublyLinkedListNode<int>(2);
+            // var node3 = new DoublyLinkedListNode<int>(3);
+            // var node4 = new DoublyLinkedListNode<int>(4);
+            // var node5 = new DoublyLinkedListNode<int>(5);
 
-            var test = new Deque<int>();
+            // var test = new Deque<int>();
 
-            test.EnqueueHead(node1);
-            test.EnqueueHead(5);
-            test.EnqueueHead(5);
-            test.EnqueueHead(5);
-            test.EnqueueHead(5);
-            test.EnqueueHead(5);
-            test.EnqueueHead(5);
-            test.EnqueueHead(5);
-            var result = test.PeekHead();
-            System.Console.WriteLine(test.DequeueTail());
-            System.Console.WriteLine(test.DequeueTail());
+            // test.EnqueueHead(node1);
+            // test.EnqueueHead(5);
+            // test.EnqueueHead(5);
+            // test.EnqueueHead(5);
+            // test.EnqueueHead(5);
+            // test.EnqueueHead(5);
+            // test.EnqueueHead(5);
+            // test.EnqueueHead(5);
+            // var result = test.PeekHead();
+            // System.Console.WriteLine(test.DequeueTail());
+            // System.Console.WriteLine(test.DequeueTail());
 
-            foreach (var item in test)
-            {
-                System.Console.WriteLine(item);
-            }
+            // foreach (var item in test)
+            // {
+            //     System.Console.WriteLine(item);
+            // }
 
             #endregion
 
             #region Binary Trees
 
-            BinaryTreeNode<string> nodeG = new("G");
-            BinaryTreeNode<string> nodeD = new("D");
-            BinaryTreeNode<string> nodeH = new("H");
-            BinaryTreeNode<string> nodeB = new("B");
-            BinaryTreeNode<string> nodeC = new("C");
-            BinaryTreeNode<string> nodeZ = new("Z");
-            BinaryTreeNode<string> nodeY = new("Y");
-            BinaryTreeNode<string> nodeK = new("K");
-            BinaryTreeNode<string> nodeJ = new("J");
-            BinaryTreeNode<string> nodeX = new("X");
+            // BinaryTreeNode<string> nodeG = new("G");
+            // BinaryTreeNode<string> nodeD = new("D");
+            // BinaryTreeNode<string> nodeH = new("H");
+            // BinaryTreeNode<string> nodeB = new("B");
+            // BinaryTreeNode<string> nodeC = new("C");
+            // BinaryTreeNode<string> nodeZ = new("Z");
+            // BinaryTreeNode<string> nodeY = new("Y");
+            // BinaryTreeNode<string> nodeK = new("K");
+            // BinaryTreeNode<string> nodeJ = new("J");
+            // BinaryTreeNode<string> nodeX = new("X");
 
-            var testtree = new BinaryTree<string>();
-            testtree.Add(nodeG);
-            testtree.Add(nodeD);
-            testtree.Add(nodeH);
-            testtree.Add(nodeB);
-            testtree.Add(nodeC);
-            testtree.Add(nodeZ);
-            testtree.Add(nodeY);
-            testtree.Add(nodeK);
-            testtree.Add(nodeJ);
-            testtree.Add(nodeX);
+            // var testtree = new BinaryTree<string>();
+            // testtree.Add(nodeG);
+            // testtree.Add(nodeD);
+            // testtree.Add(nodeH);
+            // testtree.Add(nodeB);
+            // testtree.Add(nodeC);
+            // testtree.Add(nodeZ);
+            // testtree.Add(nodeY);
+            // testtree.Add(nodeK);
+            // testtree.Add(nodeJ);
+            // testtree.Add(nodeX);
 
             // System.Console.WriteLine("Inside the () is a bigger int  | ==> result : {0}", 1.CompareTo(2));
             // System.Console.WriteLine("Inside the () is the same int  | ==> result : {0}", 1.CompareTo(1));
             // System.Console.WriteLine("Inside the () is a smaller int | ==> result : {0}", 2.CompareTo(1));
+            #endregion
+
+            #region HashTables
+            string kati = "a";
+            System.Console.WriteLine(kati.GetHashCode());
+
+            var myhash = new HashTable<string, int>();
+            myhash.Add("Avocado", 1);
+            myhash.Add("Banana", 2);
+            myhash.Add("Orange", 34);
             #endregion
         }
     }

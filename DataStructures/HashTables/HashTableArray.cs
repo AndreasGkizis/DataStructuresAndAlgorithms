@@ -9,14 +9,20 @@ namespace DataStructures.HashTables
     internal class HashTableArray<TKey, TValue>
     {
         HashTableArrayNode<TKey, TValue>[] _array;
+        public int Capacity { get { return _array.Length; } }
 
         public HashTableArray(int arrayCapacity)
         {
             _array = new HashTableArrayNode<TKey, TValue>[arrayCapacity];
         }
-        public bool TryGetValue(TKey key, out TValue value)
+        // public bool TryGetValue(TKey key, out TValue value)
+        // {
+        //     return _array[GetIndex(key)].TryGetValue(key, out value);
+        // }
+
+        private int GetIndex(TKey key)
         {
-            return (true, TValue);
+            return Math.Abs(key.GetHashCode() % Capacity);
         }
     }
 }
