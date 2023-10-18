@@ -11,8 +11,9 @@ namespace Runner
     {
         static void Main(string[] args)
         {
+                        #region singly linked lists
 
-            #region singly linked lists
+
             //var node1 = new SinglyLinkedListNode<string>("node 1");
             //var node2 = new SinglyLinkedListNode<string>("node 2");
             //var node3 = new SinglyLinkedListNode<string>("node 3");
@@ -23,8 +24,12 @@ namespace Runner
             //node3.Next = node4;
 
             //var test = new PureSinglyLinkedList<string>();
+            //var testExtra = new ExtraSinglyLinkedList<string>();
             //var testEmpty = new PureSinglyLinkedList<string>();
 
+            //testExtra.AddHead("node #1");
+            //testExtra.AddHead("node #1");
+            //testExtra.AddHead("node #1");
             //test.AddHead("node #1");
             //test.AddHead("node #2");
             //test.AddHead("node #3");
@@ -158,13 +163,21 @@ namespace Runner
             #endregion
 
             #region HashTables
-            string kati = "a";
-            System.Console.WriteLine(kati.GetHashCode());
 
             var myhash = new HashTable<string, int>();
+            // collisions can happen since it is a limited and bad indexing code
             myhash.Add("Avocado", 1);
             myhash.Add("Banana", 2);
             myhash.Add("Orange", 34);
+            myhash.Add("Strawberry", 123);
+            myhash.Add("Cherry", 56);
+
+            
+            Console.WriteLine(myhash.ContainsKey("Banana"));
+            Console.WriteLine(myhash.ContainsKey("orange"));
+            Console.WriteLine(myhash.ContainsKey("Orange"));
+            Console.WriteLine(myhash.ContainsKey("lathos"));
+
             #endregion
         }
     }

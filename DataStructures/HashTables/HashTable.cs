@@ -21,7 +21,7 @@ namespace DataStructures.HashTables
         public IEnumerable<TValue> Values;
 
         // when called this will can the overloaded constructor , called constructor chaining 
-        public HashTable() : this(10)
+        public HashTable() : this(100)
         {
         }
 
@@ -32,11 +32,16 @@ namespace DataStructures.HashTables
         public void Clear() { }
         public void Add(TKey key, TValue value)
         {
-            
+            _array.Add(key, value);
+            _count++;
         }
         public void Remove() { }
         public void ContainsValue() { }
-        public void ContainsKey() { }
+        public bool ContainsKey(TKey key)
+        {
+            
+            return _array.TryGetKey(key);
+        }
         public void TryGetValue() { }
 
         // public TValue this[TKey key]
